@@ -53,14 +53,20 @@ void inserirBalanceada(Tree **root, int pontos[][], int inicio, int fim, int n){
 	}
 }
 
-void printarArvore(Tree *raiz){  //funcao pra printar a arvore, mas nao em formato de arvore
-	if(raiz!=NULL){
-		if(raiz->esq == NULL && raiz->dir == NULL){
-			printf("\n(%d, %d)",raiz->ponto[0],raiz->ponto[1]);
-		}
-	
-		printarArvore(raiz->esq);
-		printarArvore(raiz->dir);
-	}
-}
+void printarArvoreFormatada(Tree *raiz, int nivel) { //funcao pra printar a arvore em formato de arvore
+    if (raiz == NULL) {
+        return;
+    }
 
+    // Primeiro, imprime o nó da direita (subárvore direita)
+    printarArvoreFormatada(raiz->dir, nivel + 1);
+
+    // Imprime o nó atual com o deslocamento correspondente ao nível
+    for (int i = 0; i < nivel; i++) {
+        printf("\t"); // Tabulação para deslocar o nó
+    }
+    printf("(%s, %d)\n", raiz->string, raiz->freqArv);
+
+    // Depois, imprime o nó da esquerda (subárvore esquerda)
+    printarArvoreFormatada(raiz->esq, nivel + 1);
+}
