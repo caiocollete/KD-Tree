@@ -42,13 +42,12 @@ void inserirBalanceada(Tree **root, int pontos[][K], int inicio, int fim, int n)
 }
 
 void printarArvoreFormatada(Tree *raiz, int nivel) {
-    if (raiz == NULL) {
-        return;
-    }
-    printarArvoreFormatada(raiz->dir, nivel + 1);
-    for (int i = 0; i < nivel; i++) {
-        printf("\t");
-    }
-    printf("(%d, %d)\n", raiz->ponto[0], raiz->ponto[1]);
-    printarArvoreFormatada(raiz->esq, nivel + 1);
+    if (raiz != NULL) {
+    	printarArvoreFormatada(raiz->dir, nivel + 1);
+	    for (int i = 0; i < nivel; i++) {
+	        printf("\t");
+	    }
+	    printf("(%d, %d)\n", raiz->ponto[0], raiz->ponto[1]);
+	    printarArvoreFormatada(raiz->esq, nivel + 1);
+	}
 }
