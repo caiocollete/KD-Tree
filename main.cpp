@@ -5,13 +5,13 @@
 #include "arvKd.h"
 #include "fila.h"
 
-void gerarPontos(int pontos[][K], int *TF, int quant){
-	*TF=0;
+void gerarPontos(int pontos[][K], int TF){
+	int i=0;
 	srand(0);
-	while(*TF<quant){
-		pontos[*TF][0] = rand()%30;
-		pontos[*TF][1] = rand()%30;
-		(*TF)++;
+	while(i<TF){
+		pontos[i][0] = rand()%30;
+		pontos[i][1] = rand()%30;
+		i++;
 	}
 }
 
@@ -59,14 +59,14 @@ int main(){
 	
 	// pontos estaticos que serao inseridos na arvores dps
 	int pontos[10][K];
-	int TF;
+	int TF=10;
         
     int target[K] = {8,10}; // ponto que sera o parametro para medir a distancia
     int pontosProx[TF][K]; // array de pontos onde sera retornado por parametro
     int TL=-1; // tl do array pontosProx
     
     
-    gerarPontos(pontos,&TF, 10);
+    gerarPontos(pontos,TF);
     
     inserirBalanceada(&R, pontos, 0, TF-1, 1);
     printarArvoreFormatada(R, 0);
