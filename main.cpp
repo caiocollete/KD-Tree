@@ -7,7 +7,7 @@
 
 void gerarPontos(int pontos[][K], int TF){
 	int i=0;
-	srand(0);
+	srand(0); //Mudar pra srand(time(NULL)); caso queira resultados variados
 	while(i<TF){
 		pontos[i][0] = rand()%30;
 		pontos[i][1] = rand()%30;
@@ -28,7 +28,7 @@ void pontosProximos(Tree *R, int parametros[], int pontosProx[][K],int *TL, int 
 			for(int i=0;i<K;i++){
 				soma+=pow((R->ponto[i]-parametros[i]),2);
 			}
-			soma+=sqrt(soma);
+			soma=sqrt(soma);
 			
 			if(soma<=raio){
 				(*TL)++;
@@ -45,12 +45,25 @@ void pontosProximos(Tree *R, int parametros[], int pontosProx[][K],int *TL, int 
 void exibePontosProx(int pontosProx[][K], int TL){
 	
 	if(TL!=-1){
+		printf("\n");
     	printf("Pontos Proximos:\n");
     	for(int i=0;i<=TL;i++){
     		printf("%d : {%d, %d}\n",i,pontosProx[i][0],pontosProx[i][1]);
     	}
     }
     else printf("nenhum ponto encontrado");
+}
+
+void exibirPontos(int pontos[][K], int TF){
+	
+	int j = 0;
+	
+	printf("\n");
+	for(int i = 0; i<TF; i++){
+		j = 0;	
+		printf("\n PONTO: X-%d Y-%d",pontos[i][j],pontos[i][++j]);
+	}
+	printf("\n");
 }
 
 int main(){
@@ -65,10 +78,9 @@ int main(){
     int pontosProx[TF][K]; // array de pontos onde sera retornado por parametro
     int TL=-1; // tl do array pontosProx
     
-    
     gerarPontos(pontos,TF);
     
-    inserirBalanceada(&R, pontos, 0, TF-1, 1);
+    inserirBalanceada(&R, pontos, 0, TF-1, 0);
     printarArvoreFormatada(R, 0);
     pontosProximos(R, target, pontosProx, &TL, 10);
     

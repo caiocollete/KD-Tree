@@ -36,6 +36,7 @@ void inserirBalanceada(Tree **root, int pontos[][K], int inicio, int fim, int n)
 		ordena(pontos,inicio,fim,d);
 		meio=(inicio+fim)/2;
 		*root = CriaNo(pontos[meio]);
+		//printf("\nPONTO: X-%d Y-%d",pontos[meio][0],pontos[meio][1]);//debug
 		inserirBalanceada(&(*root)->esq, pontos, inicio, meio-1, n+1);
 		inserirBalanceada(&(*root)->dir, pontos, meio+1, fim, n+1);
 	}
